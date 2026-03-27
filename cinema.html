@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>สำหรับคนพิเศษ 💖</title>
+
+<style>
+body {
+  margin:0;
+  background:black;
+  color:white;
+  font-family:Arial;
+  text-align:center;
+  overflow:hidden;
+}
+
+/* ภาพ */
+img {
+  width:100%;
+  height:100vh;
+  object-fit:cover;
+  opacity:0.4;
+  position:fixed;
+  top:0;
+  left:0;
+}
+
+/* ข้อความ */
+.text {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  font-size:24px;
+  width:80%;
+  line-height:1.6;
+  opacity:0;
+  transition:2s;
+}
+
+.show {
+  opacity:1;
+}
+
+/* ปิดท้าย */
+.final {
+  font-size:32px;
+  color:#ff8fab;
+}
+</style>
+</head>
+
+<body>
+
+<img src="yourphoto2.jpg.png">
+
+<audio id="bgm">
+  <source src="music.mp3">
+</audio>
+
+<div id="text" class="text"></div>
+
+<script>
+const messages = [
+"ตั้งแต่วันแรกที่เราได้คุยกัน...",
+"มันอาจจะเป็นแค่วันธรรมดา",
+"แต่สำหรับผม มันไม่เคยธรรมดาเลย",
+"",
+"ทุกข้อความ ทุกเสียงหัวเราะของพี่",
+"มันทำให้ผมยิ้มได้โดยไม่รู้ตัว",
+"",
+"ผมอาจจะไม่ได้เป็นคนที่ดีที่สุด",
+"แต่ผมสัญญาว่า...",
+"ผมจะเป็นคนที่รักพี่ที่สุด",
+"",
+"ขอบคุณที่เข้ามาในชีวิตผมนะ 💖",
+"",
+"อยู่ด้วยกันไปนาน ๆ นะคับพี่สาว"
+];
+
+let i = 0;
+const textDiv = document.getElementById("text");
+
+// เล่นเพลงหลังกดครั้งแรก
+document.body.addEventListener("click", ()=>{
+  document.getElementById("bgm").play();
+}, {once:true});
+
+function showText(){
+  if(i < messages.length){
+    textDiv.classList.remove("show");
+
+    setTimeout(()=>{
+      textDiv.innerHTML = messages[i];
+      textDiv.classList.add("show");
+      i++;
+    },1000);
+
+    setTimeout(showText,4000);
+  } else {
+    ending();
+  }
+}
+
+function ending(){
+  textDiv.classList.remove("show");
+
+  setTimeout(()=>{
+    textDiv.innerHTML = "<span class='final'>ผมรักพี่นะ 💖</span>";
+    textDiv.classList.add("show");
+  },1000);
+}
+function ending(){
+  textDiv.classList.remove("show");
+
+  setTimeout(()=>{
+    textDiv.innerHTML = "<h1 style='color:#ff8fab;'>ผมรักพี่นะ 💖</h1>";
+    textDiv.classList.add("show");
+
+    document.getElementById("voice").play();
+
+    // แสดงคำถามหลัง 3 วิ
+    setTimeout(()=>{
+      document.getElementById("questionBox").style.display="block";
+    },3000);
+
+  },1000);
+}
+// เริ่มหลังโหลด
+setTimeout(showText,2000);
+</script>
+
+</body>
+</html>
