@@ -1,0 +1,60 @@
+body {
+  margin:0;
+  overflow:hidden;
+  background:linear-gradient(to right,#ffdde1,#ee9ca7);
+  text-align:center;
+  color:white;
+  font-family:Arial;
+}
+
+h1 { margin-top:20px;}
+#score { font-size:22px;}
+
+.photo {
+  width:150px;
+  border-radius:20px;
+  margin-top:20px;
+}
+
+/* หัวใจ */
+.heart {
+  position:absolute;
+  font-size:30px;
+  cursor:pointer;
+  animation:float 4s linear;
+  transition: transform 0.2s;
+}
+
+.heart:active {
+  transform: scale(1.5);
+}
+
+/* บอส */
+.boss {
+  position:absolute;
+  font-size:80px;
+  cursor:pointer;
+  animation:float 5s linear;
+}
+
+/* ลอย */
+@keyframes float {
+  from { transform: translateY(100vh);}
+  to { transform: translateY(-10vh);}
+}
+
+/* เอฟเฟกต์ระเบิด */
+.winHeart {
+  position:absolute;
+  pointer-events:none;
+  animation:explodeCrazy 1.5s ease-out forwards;
+}
+
+@keyframes explodeCrazy {
+  0% { transform: scale(0); opacity:1;}
+  50% { transform: scale(1.5); }
+  100% {
+    transform: translate(var(--x), var(--y)) scale(0.5) rotate(720deg);
+    opacity:0;
+  }
+}
